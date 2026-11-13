@@ -1,5 +1,0 @@
-Har bir loyihaning skrinshotlarini o'z papkasiga tashlang:
-  ombor/1.png, ombor/2.png, ...
-Fayllar nomi bo'yicha tartiblanadi: 1-rasm kartochka muqovasi bo'ladi,
-qolganlari loyiha oynasidagi galereyada chiqadi. png, jpg, webp, avif mos keladi.
-Kodga tegish shart emas.
