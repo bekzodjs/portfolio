@@ -1,0 +1,154 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ink: #020c10;
+  --color-coal: #071a20;
+  --color-bone: #eaf7f8;
+  --color-ash: #93b4ba;
+  --color-turq: #35e0d2;
+  --color-aqua: #1aa3c4;
+  --color-ice: #b5f5ff;
+  --color-warn: #ffab8f;
+  --color-line: rgb(150 240 255 / 0.16);
+
+  --font-display: "Unbounded Variable", "Arial Black", system-ui, sans-serif;
+  --font-sans: "Onest Variable", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
+  background: var(--color-ink);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  /* No background here: it would cover the fixed backdrop layer. */
+  color: var(--color-bone);
+  font-family: var(--font-sans);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  overflow-x: clip;
+}
+
+::selection {
+  background: var(--color-turq);
+  color: var(--color-ink);
+}
+
+@layer base {
+  :focus-visible {
+    outline: 2px solid var(--color-ice);
+    outline-offset: 3px;
+  }
+}
+
+/* ---------- Glass ---------- */
+
+.glass {
+  background: linear-gradient(
+    140deg,
+    rgb(255 255 255 / 0.09),
+    rgb(255 255 255 / 0.025) 45%,
+    rgb(53 224 210 / 0.05)
+  );
+  border: 1px solid var(--color-line);
+  -webkit-backdrop-filter: blur(18px) saturate(150%);
+  backdrop-filter: blur(18px) saturate(150%);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.14),
+    inset 0 0 40px rgb(53 224 210 / 0.04),
+    0 30px 70px -30px rgb(0 0 0 / 0.75);
+}
+
+.glass-hover {
+  transition:
+    border-color 0.5s,
+    box-shadow 0.5s,
+    transform 0.5s var(--ease-out-expo);
+}
+
+.glass-hover:hover {
+  border-color: rgb(53 224 210 / 0.55);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.2),
+    inset 0 0 50px rgb(53 224 210 / 0.1),
+    0 0 40px -6px rgb(53 224 210 / 0.35),
+    0 30px 70px -30px rgb(0 0 0 / 0.75);
+  transform: translateY(-4px);
+}
+
+.text-glow {
+  background: linear-gradient(100deg, var(--color-ice), var(--color-turq) 45%, var(--color-aqua));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 0 22px rgb(53 224 210 / 0.35));
+}
+
+/* Pointer-following light on cards. */
+.spotlight {
+  background-image: radial-gradient(
+    16rem circle at var(--mx, 50%) var(--my, 0%),
+    rgb(53 224 210 / 0.2),
+    transparent 60%
+  );
+}
+
+/* ---------- Floating glass cubes ---------- */
+
+.cube-wrap {
+  position: absolute;
+  perspective: 700px;
+  animation: cube-float 9s ease-in-out infinite alternate;
+}
+
+.cube {
+  position: relative;
+  width: var(--s);
+  height: var(--s);
+  transform-style: preserve-3d;
+  animation: cube-spin 26s linear infinite;
+}
+
+.cube > span {
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgb(170 245 255 / 0.45);
+  background: linear-gradient(135deg, rgb(53 224 210 / 0.28), rgb(26 163 196 / 0.04));
+  box-shadow: inset 0 0 calc(var(--s) / 3) rgb(53 224 210 / 0.22);
+}
+
+.cube > span:nth-child(1) { transform: translateZ(calc(var(--s) / 2)); }
+.cube > span:nth-child(2) { transform: rotateY(90deg) translateZ(calc(var(--s) / 2)); }
+.cube > span:nth-child(3) { transform: rotateY(180deg) translateZ(calc(var(--s) / 2)); }
+.cube > span:nth-child(4) { transform: rotateY(270deg) translateZ(calc(var(--s) / 2)); }
+.cube > span:nth-child(5) { transform: rotateX(90deg) translateZ(calc(var(--s) / 2)); }
+.cube > span:nth-child(6) { transform: rotateX(-90deg) translateZ(calc(var(--s) / 2)); }
+
+@keyframes cube-spin {
+  from { transform: rotateX(-26deg) rotateZ(8deg) rotateY(0deg); }
+  to { transform: rotateX(-26deg) rotateZ(8deg) rotateY(360deg); }
+}
+
+@keyframes cube-float {
+  from { translate: 0 -14px; }
+  to { translate: 0 14px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cube-wrap,
+  .cube {
+    animation: none;
+  }
+  .cube {
+    transform: rotateX(-26deg) rotateZ(8deg) rotateY(38deg);
+  }
+}

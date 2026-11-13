@@ -1,0 +1,241 @@
+{
+  "projects": [
+    {
+      "slug": "ombor",
+      "title": "Ombor",
+      "tagline": "Inventory and production planning",
+      "summary": "Stock accounting for ELMA's logo-branded napkin packaging: what is in the warehouse, what production needs next.",
+      "description": [
+        "ELMA prints napkin packaging with customers' logos, and every logo is its own stock item. Ombor keeps that stock in one place, so the warehouse and the production team work from the same numbers.",
+        "I built it end to end: a NestJS REST API on PostgreSQL with Prisma and Zod validation, a React and TypeScript interface on top, and a Docker setup deployed to production with Dokploy."
+      ],
+      "highlights": [
+        "Tracks stock of logo-branded packaging per customer logo",
+        "Supports production planning from current stock levels",
+        "Validates every request with Zod before it reaches the database",
+        "Runs in Docker and is deployed with Dokploy"
+      ],
+      "tech": [
+        "React",
+        "TypeScript",
+        "Tailwind CSS",
+        "NestJS",
+        "Prisma",
+        "PostgreSQL",
+        "Docker"
+      ],
+      "links": [
+        {
+          "label": "Live Demo",
+          "href": "https://ombor.elma.uz/"
+        }
+      ],
+      "preview": "dashboard",
+      "duration": "",
+      "role": "Backend and frontend",
+      "status": "In production at ELMA",
+      "images": [
+        "/projects/ombor/1.png",
+        "/projects/ombor/2.png",
+        "/projects/ombor/3.png",
+        "/projects/ombor/4.png",
+        "/projects/ombor/5.png"
+      ]
+    },
+    {
+      "slug": "davomat",
+      "title": "Davomat",
+      "tagline": "Employee attendance",
+      "summary": "A Telegram bot that records when employees arrive and leave, with an admin panel for attendance reports. 40+ people use it daily.",
+      "description": [
+        "Employees register once in the Telegram bot. After that their check-in and check-out times are recorded automatically, with no paper journal and no separate app to install.",
+        "Managers open the admin panel to see who came in, who is late and how the month looks. The backend runs on NestJS, TypeORM and PostgreSQL; the admin panel is a React app."
+      ],
+      "highlights": [
+        "Registration and daily check-in / check-out inside Telegram",
+        "Used by 40+ employees every working day",
+        "Admin panel with attendance reports",
+        "Protected admin login"
+      ],
+      "tech": [
+        "NestJS",
+        "TypeORM",
+        "PostgreSQL",
+        "Telegram Bot API",
+        "React"
+      ],
+      "links": [
+        {
+          "label": "Open bot",
+          "href": "https://t.me/DavomatElmaBot"
+        },
+        {
+          "label": "Admin panel",
+          "href": "https://davomat.elma.uz/"
+        }
+      ],
+      "preview": "bot",
+      "duration": "",
+      "role": "Backend, bot and admin panel",
+      "status": "In production, 40+ daily users",
+      "images": [
+        "/projects/davomat/1.png"
+      ]
+    },
+    {
+      "slug": "avtopark",
+      "title": "Elma Avtopark",
+      "tagline": "Vehicle fleet management",
+      "summary": "One dashboard for a company's vehicles: documents, fuel, maintenance, repairs, fines and drivers.",
+      "description": [
+        "Elma Avtopark replaces the spreadsheets a fleet manager usually juggles. Every vehicle has its own record with inspection photos and documents, and the dashboard shows the whole fleet at a glance.",
+        "Fuel and mileage are logged per month, and scheduled maintenance tracks each part's wear so the dashboard shows what needs replacing first. Repairs, accidents and fines sit in each vehicle's history, and drivers send daily inspection photos through a Telegram bot.",
+        "An analytics screen forecasts upcoming costs by category and ranks the most expensive vehicles, with reports exportable to Excel. The interface works in Uzbek and Russian with a light and dark theme."
+      ],
+      "highlights": [
+        "Live operations dashboard with a fleet-wide overview",
+        "Vehicle registry with inspection photos and document tracking",
+        "Fuel and mileage logging, scheduled maintenance reminders",
+        "Repair log plus accident and fine records per vehicle",
+        "Part-wear tracking that flags what to replace first",
+        "Daily driver inspection photos via a Telegram bot",
+        "Cost forecasting by category and Excel export",
+        "Driver management, spare-parts catalogue, UZ / RU and dark mode"
+      ],
+      "tech": [
+        "Vue",
+        "Vite",
+        "Telegram Bot API"
+      ],
+      "links": [
+        {
+          "label": "Live Demo",
+          "href": "https://elma-avto-park.vercel.app/"
+        },
+        {
+          "label": "Open bot",
+          "href": "https://t.me/AutoParkElmaBot"
+        }
+      ],
+      "preview": "dashboard",
+      "duration": "",
+      "role": "",
+      "status": "",
+      "images": [
+        "/projects/avtopark/1.jpg",
+        "/projects/avtopark/2.jpg",
+        "/projects/avtopark/3.jpg",
+        "/projects/avtopark/4.jpg",
+        "/projects/avtopark/5.jpg",
+        "/projects/avtopark/6.jpg",
+        "/projects/avtopark/7.jpg",
+        "/projects/avtopark/8.jpg",
+        "/projects/avtopark/9.jpg"
+      ]
+    },
+    {
+      "slug": "edu-crm",
+      "title": "Edu CRM",
+      "tagline": "Learning-centre management",
+      "summary": "One system to run a learning centre: students, groups, teachers, schedule, attendance, grades and payments.",
+      "description": [
+        "Edu CRM replaces the notebooks and spreadsheets a tutoring centre runs on. The dashboard shows active students, groups, teachers and this month's debt at a glance, and every part of the centre has its own screen.",
+        "Administrators keep student and teacher records, build the weekly timetable and generate the actual lessons from it, mark attendance, set grades and homework, track payments and debts, and handle incoming applications. It supports roles, a light and dark theme, and ties each teacher's pay to a configurable percentage."
+      ],
+      "highlights": [
+        "Dashboard with active students, groups, teachers and monthly debt",
+        "Student and teacher records with per-group enrolment",
+        "Weekly timetable that generates dated lessons for attendance",
+        "Attendance, grades, homework and reports in one place",
+        "Payment and debt tracking, plus incoming applications",
+        "Roles, light / dark theme and per-teacher salary percentage"
+      ],
+      "tech": [
+        "React",
+        "TypeScript",
+        "NestJS",
+        "PostgreSQL"
+      ],
+      "links": [
+        {
+          "label": "Live Demo",
+          "href": "https://edu-crm-sandy.vercel.app/"
+        }
+      ],
+      "preview": "dashboard",
+      "duration": "",
+      "role": "Backend and frontend",
+      "status": "",
+      "images": [
+        "/projects/edu-crm/1.jpg",
+        "/projects/edu-crm/2.jpg",
+        "/projects/edu-crm/3.jpg",
+        "/projects/edu-crm/4.jpg",
+        "/projects/edu-crm/5.jpg"
+      ]
+    },
+    {
+      "slug": "aziastirka",
+      "title": "Azia Stirka",
+      "tagline": "Laundry service platform",
+      "summary": "A laundry business in one system: public website, admin panel, backend API and a Telegram bot that keeps order statuses in sync.",
+      "description": [
+        "Customers place an order on the website. The order is saved and pushed to Telegram at once, with inline status buttons, and a status changed in Telegram shows up in the admin panel and the other way round.",
+        "I built all four parts: a NestJS REST API, a React admin panel that installs as a PWA, a Next.js marketing site in Uzbek and Russian, and the Telegram bot. It runs in production on three subdomains with automated CI/CD."
+      ],
+      "highlights": [
+        "Orders pushed to Telegram in real time with inline status buttons",
+        "Two-way status sync between Telegram and the admin panel",
+        "API with JWT auth, validation, rate limiting and Excel export",
+        "Installable PWA admin panel on React, TypeScript and Vite",
+        "SSR marketing site with Uzbek and Russian versions",
+        "Deployed across three subdomains with GitHub Actions"
+      ],
+      "tech": [
+        "Next.js",
+        "React",
+        "TypeScript",
+        "NestJS",
+        "Telegram Bot API",
+        "GitHub Actions"
+      ],
+      "links": [
+        {
+          "label": "Live Demo",
+          "href": "https://aziastirka.uz"
+        }
+      ],
+      "preview": "site",
+      "duration": "",
+      "role": "Backend, frontend and bot",
+      "status": "In production",
+      "images": [
+        "/projects/aziastirka/1.jpg",
+        "/projects/aziastirka/2.jpg",
+        "/projects/aziastirka/3.jpg",
+        "/projects/aziastirka/4.jpg",
+        "/projects/aziastirka/5.jpg",
+        "/projects/aziastirka/6.jpg",
+        "/projects/aziastirka/7.jpg",
+        "/projects/aziastirka/8.jpg"
+      ]
+    }
+  ],
+  "settings": {
+    "email": "salom@bekzodjs.uz",
+    "socials": [
+      {
+        "label": "GitHub",
+        "href": "https://github.com/bekzodjs"
+      },
+      {
+        "label": "LinkedIn",
+        "href": "https://www.linkedin.com/in/developerbekzod/"
+      },
+      {
+        "label": "Telegram",
+        "href": "https://t.me/prog_r_ammer"
+      }
+    ]
+  }
+}
