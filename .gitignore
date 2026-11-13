@@ -40,3 +40,10 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# runtime data written by the admin panel (keep seed content.default.json tracked)
+/data/content.json
+
+# user-uploaded images/PDFs (server only)
+/public/uploads/*
+!/public/uploads/.gitkeep
