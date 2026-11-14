@@ -1,0 +1,21 @@
+{
+  "/_global-error/page": "/_global-error",
+  "/_not-found/page": "/_not-found",
+  "/admin/login/page": "/admin/login",
+  "/admin/page": "/admin",
+  "/api/admin/login/route": "/api/admin/login",
+  "/api/admin/logout/route": "/api/admin/logout",
+  "/api/admin/profile/route": "/api/admin/profile",
+  "/api/admin/projects/[slug]/route": "/api/admin/projects/[slug]",
+  "/api/admin/projects/route": "/api/admin/projects",
+  "/api/admin/settings/route": "/api/admin/settings",
+  "/api/admin/upload/route": "/api/admin/upload",
+  "/icon.svg/route": "/icon.svg",
+  "/page": "/",
+  "/projects/[slug]/page": "/projects/[slug]",
+  "/ru/page": "/ru",
+  "/ru/projects/[slug]/page": "/ru/projects/[slug]",
+  "/sitemap-pages.xml/route": "/sitemap-pages.xml",
+  "/uz/page": "/uz",
+  "/uz/projects/[slug]/page": "/uz/projects/[slug]"
+}

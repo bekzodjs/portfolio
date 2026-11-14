@@ -1,0 +1,16 @@
+{
+  "app": {
+    "[project]/src/app/_not-found/page": [],
+    "[project]/src/app/admin/login/page": [],
+    "[project]/src/app/admin/page": [],
+    "[project]/src/app/page": [],
+    "[project]/src/app/projects/[slug]/page": [],
+    "[project]/src/app/ru/page": [],
+    "[project]/src/app/ru/projects/[slug]/page": [],
+    "[project]/src/app/uz/page": [],
+    "[project]/src/app/uz/projects/[slug]/page": []
+  },
+  "appUsingSizeAdjust": true,
+  "pages": {},
+  "pagesUsingSizeAdjust": false
+}
