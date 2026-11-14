@@ -288,17 +288,18 @@ function DashboardPreview() {
 /** Drawn stand-in for a project screenshot. Set `image` on the project to use a real one. */
 export function ProjectPreview({
   kind,
-  title,
+  label,
 }: {
   kind: Project["preview"];
-  title: string;
+  /** Accessible description, e.g. "Preview of Ombor". */
+  label: string;
 }) {
   return (
     <svg
       viewBox="0 0 640 420"
       className="h-full w-full"
       role="img"
-      aria-label={`Preview of ${title}`}
+      aria-label={label}
     >
       {kind === "site" ? (
         <SitePreview />

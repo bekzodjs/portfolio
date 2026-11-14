@@ -3,10 +3,15 @@
 import { motion, useScroll, useSpring } from "framer-motion";
 import { useRef } from "react";
 import { process } from "@/data/site";
+import type { Lang } from "@/i18n/config";
+import { localizeSteps } from "@/i18n/content";
+import { ui } from "@/i18n/ui";
 import { Reveal } from "./Reveal";
 import { SectionHeading } from "./SectionHeading";
 
-export function Process() {
+export function Process({ lang }: { lang: Lang }) {
+  const t = ui[lang].process;
+  const steps = localizeSteps(process, lang);
   const ref = useRef<HTMLOListElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -23,8 +28,8 @@ export function Process() {
       <div className="mx-auto max-w-6xl px-5 md:px-8">
         <SectionHeading
           id="process-title"
-          title="Work process"
-          lead="Five steps from first message to launch."
+          title={t.title}
+          lead={t.lead}
         />
 
         <div className="glass rounded-[2rem] p-6 sm:p-9">
@@ -45,7 +50,7 @@ export function Process() {
               aria-hidden="true"
             />
 
-            {process.map((step, i) => (
+            {steps.map((step, i) => (
               <Reveal
                 as="li"
                 key={step.title}

@@ -1,11 +1,14 @@
 import { Bot, MonitorSmartphone, PenTool } from "lucide-react";
+import type { Lang } from "@/i18n/config";
+import { ui } from "@/i18n/ui";
 import type { Profile } from "@/lib/content";
 import { Reveal } from "./Reveal";
 import { SectionHeading } from "./SectionHeading";
 
 const ICONS = { web: MonitorSmartphone, bot: Bot, design: PenTool } as const;
 
-export function Services({ profile }: { profile: Profile }) {
+export function Services({ lang, profile }: { lang: Lang; profile: Profile }) {
+  const t = ui[lang].services;
   const services = profile.services;
   return (
     <section
@@ -16,8 +19,8 @@ export function Services({ profile }: { profile: Profile }) {
       <div className="mx-auto max-w-6xl px-5 md:px-8">
         <SectionHeading
           id="services-title"
-          title="Services"
-          lead="What you can hire me for."
+          title={t.title}
+          lead={t.lead}
         />
         <ul className="grid gap-5 md:grid-cols-3 lg:gap-6">
           {services.map((service, i) => {

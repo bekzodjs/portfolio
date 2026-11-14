@@ -1,9 +1,13 @@
+import type { Lang } from "@/i18n/config";
+import { localizeProject } from "@/i18n/content";
+import { ui } from "@/i18n/ui";
 import { getProjects } from "@/lib/content";
 import { ProjectsGrid } from "./ProjectsGrid";
 import { SectionHeading } from "./SectionHeading";
 
-export async function Projects() {
-  const projects = await getProjects();
+export async function Projects({ lang }: { lang: Lang }) {
+  const t = ui[lang].projects;
+  const projects = (await getProjects()).map((p) => localizeProject(p, lang));
 
   return (
     <section
@@ -14,10 +18,10 @@ export async function Projects() {
       <div className="mx-auto max-w-6xl px-5 md:px-8">
         <SectionHeading
           id="work-title"
-          title="Featured projects"
-          lead="Systems that people at real companies open every working day. Select a project for the full story."
+          title={t.title}
+          lead={t.lead}
         />
-        <ProjectsGrid projects={projects} />
+        <ProjectsGrid lang={lang} projects={projects} />
       </div>
     </section>
   );

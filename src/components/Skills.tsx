@@ -1,6 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
+import type { Lang } from "@/i18n/config";
+import { ui } from "@/i18n/ui";
 import type { Profile, Skill } from "@/lib/content";
 import { SectionHeading } from "./SectionHeading";
 
@@ -44,7 +46,8 @@ function SkillCard({ skill, index }: { skill: Skill; index: number }) {
   );
 }
 
-export function Skills({ profile }: { profile: Profile }) {
+export function Skills({ lang, profile }: { lang: Lang; profile: Profile }) {
+  const t = ui[lang].skills;
   const skillGroups = profile.skillGroups;
   const skills = skillGroups.flatMap((g) => g.skills);
   return (
@@ -56,8 +59,8 @@ export function Skills({ profile }: { profile: Profile }) {
       <div className="mx-auto max-w-6xl px-5 md:px-8">
         <SectionHeading
           id="skills-title"
-          title="Technical skills"
-          lead="The tools I reach for every week."
+          title={t.title}
+          lead={t.lead}
         />
         <ul className="grid gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3">
           {skills.map((skill, i) => (

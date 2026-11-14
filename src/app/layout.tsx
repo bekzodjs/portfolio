@@ -1,41 +1,26 @@
 import type { Metadata, Viewport } from "next";
+import { headers } from "next/headers";
 import "@fontsource-variable/unbounded";
 import "@fontsource-variable/onest";
 import "./globals.css";
 import { site } from "@/data/site";
+import { LANG_HEADER, defaultLang, isLang } from "@/i18n/config";
+import { ui } from "@/i18n/ui";
+import { getSettings } from "@/lib/content";
+import { jsonLd, personJsonLd, websiteJsonLd } from "@/lib/seo";
 
+// Titles, descriptions, canonical and hreflang links are set per page in src/lib/seo.ts.
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: `${site.name} — Frontend Developer in Tashkent`,
+    default: ui.en.meta.title,
     template: `%s — ${site.name}`,
   },
   description: site.description,
-  keywords: [
-    "Bekzod Toxtamuratov",
-    "bekzodjs",
-    "frontend developer",
-    "JavaScript developer",
-    "Telegram bot developer",
-    "Tashkent",
-    "React",
-    "Next.js",
-  ],
   authors: [{ name: site.name, url: site.url }],
-  alternates: { canonical: "/" },
-  openGraph: {
-    type: "website",
-    url: site.url,
-    siteName: site.name,
-    title: `${site.name} — Frontend Developer in Tashkent`,
-    description: site.description,
-    images: [{ url: "/og.png", width: 1200, height: 630, alt: site.name }],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: `${site.name} — Frontend Developer in Tashkent`,
-    description: site.description,
-    images: ["/og.png"],
+  verification: {
+    ...(site.verification.google ? { google: site.verification.google } : {}),
+    ...(site.verification.yandex ? { yandex: site.verification.yandex } : {}),
   },
 };
 
@@ -44,37 +29,28 @@ export const viewport: Viewport = {
   colorScheme: "dark",
 };
 
-const personJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Person",
-  name: site.name,
-  url: site.url,
-  jobTitle: "Frontend Developer",
-  email: `mailto:${site.email}`,
-  address: {
-    "@type": "PostalAddress",
-    addressLocality: "Tashkent",
-    addressCountry: "UZ",
-  },
-  sameAs: site.socials.map((s) => s.href),
-};
-
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
+  const header = (await headers()).get(LANG_HEADER);
+  const lang = isLang(header) ? header : defaultLang;
+  const settings = await getSettings();
+
   return (
-    <html lang="en" className="antialiased">
+    <html lang={lang} className="antialiased">
       <body>
         <a
           href="#main"
           className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-bone focus:px-5 focus:py-2 focus:text-ink"
         >
-          Skip to content
+          {ui[lang].skip}
         </a>
         {children}
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+          dangerouslySetInnerHTML={{
+            __html: jsonLd([personJsonLd(lang, settings), websiteJsonLd(lang)]),
+          }}
         />
       </body>
     </html>

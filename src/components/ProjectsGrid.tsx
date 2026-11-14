@@ -10,6 +10,8 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { projectPath, type Lang } from "@/i18n/config";
+import { ui } from "@/i18n/ui";
 import type { Project } from "@/lib/content";
 import { ProjectPreview } from "./ProjectPreview";
 
@@ -17,10 +19,10 @@ const EASE = [0.16, 1, 0.3, 1] as const;
 
 export type ProjectWithImages = Project;
 
-function TechList({ tech }: { tech: string[] }) {
+function TechList({ tech, label }: { tech: string[]; label: string }) {
   if (tech.length === 0) return null;
   return (
-    <ul className="flex flex-wrap gap-2" aria-label="Technologies used">
+    <ul className="flex flex-wrap gap-2" aria-label={label}>
       {tech.map((t) => (
         <li
           key={t}
@@ -38,11 +40,13 @@ function LinkButton({
   label,
   title,
   primary,
+  newTab,
 }: {
   href: string;
   label: string;
   title: string;
   primary: boolean;
+  newTab: string;
 }) {
   return (
     <a
@@ -62,21 +66,24 @@ function LinkButton({
         className="transition-transform duration-300 group-hover/btn:-translate-y-0.5 group-hover/btn:translate-x-0.5"
       />
       <span className="sr-only">
-        : {title} (opens in a new tab)
+        : {title} ({newTab})
       </span>
     </a>
   );
 }
 
 function ProjectCard({
+  lang,
   project,
   index,
   onOpen,
 }: {
+  lang: Lang;
   project: ProjectWithImages;
   index: number;
   onOpen: (trigger: HTMLElement) => void;
 }) {
+  const t = ui[lang].projects;
   const cover = project.images[0];
 
   return (
@@ -90,7 +97,7 @@ function ProjectCard({
       <button
         type="button"
         onClick={(e) => onOpen(e.currentTarget)}
-        aria-label={`Open details of ${project.title}`}
+        aria-label={t.openDetails(project.title)}
         className="relative block aspect-[32/21] w-full cursor-pointer overflow-hidden border-b border-line bg-ink/40 text-left"
       >
         <span
@@ -101,13 +108,13 @@ function ProjectCard({
           {cover ? (
             <Image
               src={cover}
-              alt=""
+              alt={t.coverAlt(project.title, project.tagline)}
               fill
               sizes="(min-width: 1024px) 24rem, (min-width: 640px) 50vw, 100vw"
               className="object-cover object-top"
             />
           ) : (
-            <ProjectPreview kind={project.preview} title={project.title} />
+            <ProjectPreview kind={project.preview} label={t.previewAlt(project.title)} />
           )}
         </span>
         {project.duration ? (
@@ -123,11 +130,16 @@ function ProjectCard({
           {project.tagline}
         </p>
         <h3 className="mt-2 font-display text-xl font-semibold tracking-[-0.02em]">
-          {project.title}
+          <a
+            href={projectPath(lang, project.slug)}
+            className="transition-colors duration-300 hover:text-turq"
+          >
+            {project.title}
+          </a>
         </h3>
         <p className="mt-2.5 mb-5 text-[0.98rem] text-ash">{project.summary}</p>
 
-        <TechList tech={project.tech} />
+        <TechList tech={project.tech} label={t.tech} />
 
         <div className="mt-auto flex flex-wrap gap-2.5 pt-6">
           <button
@@ -135,8 +147,8 @@ function ProjectCard({
             onClick={(e) => onOpen(e.currentTarget)}
             className="inline-flex h-11 cursor-pointer items-center rounded-xl bg-turq px-4 text-[0.95rem] font-medium text-ink transition-[filter,transform] duration-300 hover:brightness-110 active:scale-[0.98]"
           >
-            View details
-            <span className="sr-only"> of {project.title}</span>
+            {t.details}
+            <span className="sr-only">{t.of(project.title)}</span>
           </button>
           {project.links[0] ? (
             <LinkButton
@@ -144,6 +156,7 @@ function ProjectCard({
               label={project.links[0].label}
               title={project.title}
               primary={false}
+              newTab={t.newTab}
             />
           ) : null}
         </div>
@@ -152,7 +165,8 @@ function ProjectCard({
   );
 }
 
-function Gallery({ project }: { project: ProjectWithImages }) {
+export function Gallery({ lang, project }: { lang: Lang; project: ProjectWithImages }) {
+  const t = ui[lang].projects;
   const [active, setActive] = useState(0);
   const count = project.images.length;
 
@@ -174,7 +188,7 @@ function Gallery({ project }: { project: ProjectWithImages }) {
   if (count === 0) {
     return (
       <div className="relative aspect-[32/21] overflow-hidden rounded-2xl border border-line bg-ink/50">
-        <ProjectPreview kind={project.preview} title={project.title} />
+        <ProjectPreview kind={project.preview} label={t.previewAlt(project.title)} />
       </div>
     );
   }
@@ -187,12 +201,12 @@ function Gallery({ project }: { project: ProjectWithImages }) {
           target="_blank"
           rel="noopener noreferrer"
           className="absolute inset-0 block"
-          aria-label="Open this screenshot at full size (new tab)"
+          aria-label={t.fullSize}
         >
           <Image
             key={project.images[active]}
             src={project.images[active]}
-            alt={`${project.title}, screenshot ${active + 1} of ${count}`}
+            alt={t.shotAlt(project.title, active + 1, count)}
             fill
             sizes="(min-width: 1024px) 60rem, 100vw"
             className="object-contain"
@@ -204,7 +218,7 @@ function Gallery({ project }: { project: ProjectWithImages }) {
             <button
               type="button"
               onClick={() => step(-1)}
-              aria-label="Previous screenshot"
+              aria-label={t.prev}
               className="absolute left-3 top-1/2 grid size-11 -translate-y-1/2 cursor-pointer place-items-center rounded-full border border-line bg-ink/75 text-ice backdrop-blur transition-colors hover:bg-turq/20"
             >
               <ChevronLeft size={20} aria-hidden="true" />
@@ -212,7 +226,7 @@ function Gallery({ project }: { project: ProjectWithImages }) {
             <button
               type="button"
               onClick={() => step(1)}
-              aria-label="Next screenshot"
+              aria-label={t.next}
               className="absolute right-3 top-1/2 grid size-11 -translate-y-1/2 cursor-pointer place-items-center rounded-full border border-line bg-ink/75 text-ice backdrop-blur transition-colors hover:bg-turq/20"
             >
               <ChevronRight size={20} aria-hidden="true" />
@@ -231,7 +245,6 @@ function Gallery({ project }: { project: ProjectWithImages }) {
               <button
                 type="button"
                 onClick={() => setActive(i)}
-                aria-label={`Show screenshot ${i + 1}`}
                 aria-current={i === active}
                 className={`relative block h-16 w-24 cursor-pointer overflow-hidden rounded-lg border transition-[border-color,opacity] ${
                   i === active
@@ -241,7 +254,7 @@ function Gallery({ project }: { project: ProjectWithImages }) {
               >
                 <Image
                   src={src}
-                  alt=""
+                  alt={t.shotAlt(project.title, i + 1, count)}
                   fill
                   sizes="6rem"
                   className="object-cover object-top"
@@ -255,13 +268,101 @@ function Gallery({ project }: { project: ProjectWithImages }) {
   );
 }
 
+/** Gallery, description, facts, stack and links: shared by the dialog and the project page. */
+export function ProjectDetails({
+  lang,
+  project,
+  heading: Heading,
+}: {
+  lang: Lang;
+  project: ProjectWithImages;
+  heading: "h2" | "h4";
+}) {
+  const t = ui[lang].projects;
+  const facts = [
+    { term: t.time, detail: project.duration },
+    { term: t.role, detail: project.role },
+    { term: t.status, detail: project.status },
+  ].filter((f): f is { term: string; detail: string } => Boolean(f.detail));
+
+  return (
+    <>
+      <Gallery lang={lang} project={project} />
+
+      <div className="mt-7 grid gap-8 md:grid-cols-[1.6fr_1fr]">
+        <div>
+          <Heading className="font-display text-base font-semibold">{t.about}</Heading>
+          <div className="mt-3 space-y-3 text-[1rem] leading-relaxed text-ash">
+            {project.description.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
+          </div>
+
+          {project.highlights.length > 0 ? (
+            <>
+              <Heading className="mt-7 font-display text-base font-semibold">{t.does}</Heading>
+              <ul className="mt-3 space-y-2.5 text-[0.98rem] text-ash">
+                {project.highlights.map((item) => (
+                  <li key={item} className="flex gap-3">
+                    <span
+                      className="mt-[0.55em] size-1.5 shrink-0 rounded-full bg-turq"
+                      aria-hidden="true"
+                    />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </>
+          ) : null}
+        </div>
+
+        <aside className="space-y-6">
+          {facts.length > 0 ? (
+            <dl className="space-y-4 rounded-2xl border border-line bg-ink/40 p-5">
+              {facts.map((fact) => (
+                <div key={fact.term}>
+                  <dt className="text-[0.8rem] uppercase tracking-[0.12em] text-ash">{fact.term}</dt>
+                  <dd className="mt-1 text-[1rem] text-bone">{fact.detail}</dd>
+                </div>
+              ))}
+            </dl>
+          ) : null}
+
+          {project.tech.length > 0 ? (
+            <div>
+              <Heading className="mb-3 font-display text-base font-semibold">{t.stack}</Heading>
+              <TechList tech={project.tech} label={t.tech} />
+            </div>
+          ) : null}
+
+          <div className="flex flex-wrap gap-2.5">
+            {project.links.map((link, i) => (
+              <LinkButton
+                key={link.href}
+                href={link.href}
+                label={link.label}
+                title={project.title}
+                primary={i === 0}
+                newTab={t.newTab}
+              />
+            ))}
+          </div>
+        </aside>
+      </div>
+    </>
+  );
+}
+
 function ProjectDialog({
+  lang,
   project,
   onClose,
 }: {
+  lang: Lang;
   project: ProjectWithImages;
   onClose: () => void;
 }) {
+  const t = ui[lang].projects;
   const closeRef = useRef<HTMLButtonElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
 
@@ -294,12 +395,6 @@ function ProjectDialog({
       window.removeEventListener("keydown", onKey);
     };
   }, [onClose]);
-
-  const facts = [
-    { term: "Time spent", detail: project.duration },
-    { term: "My role", detail: project.role },
-    { term: "Status", detail: project.status },
-  ].filter((f): f is { term: string; detail: string } => Boolean(f.detail));
 
   return (
     <motion.div
@@ -339,91 +434,29 @@ function ProjectDialog({
               ref={closeRef}
               type="button"
               onClick={onClose}
-              aria-label="Close project details"
+              aria-label={t.close}
               className="grid size-11 shrink-0 cursor-pointer place-items-center rounded-full border border-line text-ice transition-colors hover:bg-turq/15"
             >
               <X size={20} aria-hidden="true" />
             </button>
           </div>
 
-          <Gallery project={project} />
+          <ProjectDetails lang={lang} project={project} heading="h4" />
 
-          <div className="mt-7 grid gap-8 md:grid-cols-[1.6fr_1fr]">
-            <div>
-              <h4 className="font-display text-base font-semibold">
-                About the project
-              </h4>
-              <div className="mt-3 space-y-3 text-[1rem] leading-relaxed text-ash">
-                {project.description.map((paragraph) => (
-                  <p key={paragraph}>{paragraph}</p>
-                ))}
-              </div>
-
-              {project.highlights.length > 0 ? (
-                <>
-                  <h4 className="mt-7 font-display text-base font-semibold">
-                    What it does
-                  </h4>
-                  <ul className="mt-3 space-y-2.5 text-[0.98rem] text-ash">
-                    {project.highlights.map((item) => (
-                      <li key={item} className="flex gap-3">
-                        <span
-                          className="mt-[0.55em] size-1.5 shrink-0 rounded-full bg-turq"
-                          aria-hidden="true"
-                        />
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </>
-              ) : null}
-            </div>
-
-            <aside className="space-y-6">
-              {facts.length > 0 ? (
-                <dl className="space-y-4 rounded-2xl border border-line bg-ink/40 p-5">
-                  {facts.map((fact) => (
-                    <div key={fact.term}>
-                      <dt className="text-[0.8rem] uppercase tracking-[0.12em] text-ash">
-                        {fact.term}
-                      </dt>
-                      <dd className="mt-1 text-[1rem] text-bone">
-                        {fact.detail}
-                      </dd>
-                    </div>
-                  ))}
-                </dl>
-              ) : null}
-
-              {project.tech.length > 0 ? (
-                <div>
-                  <h4 className="mb-3 font-display text-base font-semibold">
-                    Stack
-                  </h4>
-                  <TechList tech={project.tech} />
-                </div>
-              ) : null}
-
-              <div className="flex flex-wrap gap-2.5">
-                {project.links.map((link, i) => (
-                  <LinkButton
-                    key={link.href}
-                    href={link.href}
-                    label={link.label}
-                    title={project.title}
-                    primary={i === 0}
-                  />
-                ))}
-              </div>
-            </aside>
-          </div>
+          <a
+            href={projectPath(lang, project.slug)}
+            className="mt-7 inline-flex items-center gap-1.5 border-b border-line pb-1 text-[0.95rem] text-ice transition-colors duration-300 hover:border-turq"
+          >
+            {t.page}
+            <ArrowUpRight size={16} aria-hidden="true" />
+          </a>
         </motion.div>
       </div>
     </motion.div>
   );
 }
 
-export function ProjectsGrid({ projects }: { projects: ProjectWithImages[] }) {
+export function ProjectsGrid({ lang, projects }: { lang: Lang; projects: ProjectWithImages[] }) {
   const [openSlug, setOpenSlug] = useState<string | null>(null);
   const triggerRef = useRef<HTMLElement | null>(null);
   const open = projects.find((p) => p.slug === openSlug) ?? null;
@@ -439,6 +472,7 @@ export function ProjectsGrid({ projects }: { projects: ProjectWithImages[] }) {
         {projects.map((project, i) => (
           <ProjectCard
             key={project.slug}
+            lang={lang}
             project={project}
             index={i}
             onOpen={(trigger) => {
@@ -451,7 +485,7 @@ export function ProjectsGrid({ projects }: { projects: ProjectWithImages[] }) {
 
       <AnimatePresence>
         {open ? (
-          <ProjectDialog key={open.slug} project={open} onClose={close} />
+          <ProjectDialog key={open.slug} lang={lang} project={open} onClose={close} />
         ) : null}
       </AnimatePresence>
     </>

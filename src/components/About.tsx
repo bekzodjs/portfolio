@@ -1,10 +1,13 @@
 import { UserRound } from "lucide-react";
 import Image from "next/image";
+import type { Lang } from "@/i18n/config";
+import { ui } from "@/i18n/ui";
 import type { Profile } from "@/lib/content";
 import { Reveal } from "./Reveal";
 import { SectionHeading } from "./SectionHeading";
 
-export function About({ profile }: { profile: Profile }) {
+export function About({ lang, profile }: { lang: Lang; profile: Profile }) {
+  const t = ui[lang].about;
   const name = `${profile.firstName} ${profile.lastName}`;
   return (
     <section
@@ -13,7 +16,7 @@ export function About({ profile }: { profile: Profile }) {
       className="relative py-20 md:py-28"
     >
       <div className="mx-auto max-w-6xl px-5 md:px-8">
-        <SectionHeading id="about-title" title="About me" />
+        <SectionHeading id="about-title" title={t.title} />
 
         <Reveal>
           <div className="glass grid gap-8 rounded-[2rem] p-6 sm:p-9 lg:grid-cols-12 lg:gap-12">
@@ -22,7 +25,7 @@ export function About({ profile }: { profile: Profile }) {
                 {profile.photo ? (
                   <Image
                     src={profile.photo}
-                    alt={`${name} at work`}
+                    alt={t.photoAlt(name)}
                     fill
                     sizes="(min-width: 1024px) 20rem, 17rem"
                     className="object-cover object-top"

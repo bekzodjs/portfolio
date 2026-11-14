@@ -11,11 +11,14 @@ export function Timeline({
   id,
   title,
   lead,
+  kindLabel,
   items,
 }: {
   id: string;
   title: string;
   lead?: string;
+  /** Screen-reader label for the entries, in the page language. */
+  kindLabel?: string;
   items: TimelineItem[];
 }) {
   const ref = useRef<HTMLOListElement>(null);
@@ -68,7 +71,7 @@ export function Timeline({
                     <p className="mt-1.5 flex items-center gap-2 text-bone/80">
                       <Icon size={17} aria-hidden="true" className="shrink-0 text-turq" />
                       <span>
-                        <span className="sr-only">{item.kind}: </span>
+                        <span className="sr-only">{kindLabel ?? item.kind}: </span>
                         {item.place}
                       </span>
                     </p>

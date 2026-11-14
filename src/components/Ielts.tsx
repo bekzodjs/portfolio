@@ -1,8 +1,11 @@
 import { Download, Languages } from "lucide-react";
+import type { Lang } from "@/i18n/config";
+import { ui } from "@/i18n/ui";
 import type { Profile } from "@/lib/content";
 import { Reveal } from "./Reveal";
 
-export function Ielts({ profile }: { profile: Profile }) {
+export function Ielts({ lang, profile }: { lang: Lang; profile: Profile }) {
+  const t = ui[lang].ielts;
   const ielts = profile.ielts;
   return (
     <section aria-labelledby="ielts-title" className="relative py-6 md:py-10">
@@ -21,7 +24,7 @@ export function Ielts({ profile }: { profile: Profile }) {
                       {ielts.score}
                     </span>
                     <span className="mt-1.5 block text-[0.8rem] uppercase tracking-[0.16em] text-ash">
-                      Band
+                      {t.band}
                     </span>
                   </span>
                 </div>
@@ -30,7 +33,7 @@ export function Ielts({ profile }: { profile: Profile }) {
               <div>
                 <p className="inline-flex items-center gap-2 text-[0.8rem] uppercase tracking-[0.14em] text-turq">
                   <Languages size={15} aria-hidden="true" />
-                  Certified English
+                  {t.certified}
                 </p>
                 <h2
                   id="ielts-title"
@@ -40,7 +43,7 @@ export function Ielts({ profile }: { profile: Profile }) {
                 </h2>
                 <p className="mt-3 max-w-[58ch] text-ash">{ielts.note}</p>
                 <p className="mt-2 text-[0.92rem] text-ash">
-                  Test taken in {ielts.taken}.
+                  {t.taken(ielts.taken)}
                 </p>
               </div>
 
@@ -51,7 +54,7 @@ export function Ielts({ profile }: { profile: Profile }) {
                   className="inline-flex h-12 items-center justify-center gap-2.5 rounded-xl bg-turq px-6 font-medium text-ink shadow-[0_0_30px_-6px_rgb(53_224_210/0.8)] transition-[filter,transform] duration-300 hover:brightness-110 active:scale-[0.98]"
                 >
                   <Download size={18} aria-hidden="true" />
-                  Download certificate
+                  {t.download}
                   <span className="sr-only"> (PDF)</span>
                 </a>
               ) : null}

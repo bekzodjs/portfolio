@@ -4,6 +4,8 @@ import { AnimatePresence, motion } from "framer-motion";
 import { ArrowUpRight, Mail, Send } from "lucide-react";
 import { useId, useState } from "react";
 import { site } from "@/data/site";
+import type { Lang } from "@/i18n/config";
+import { ui, type Dictionary } from "@/i18n/ui";
 import { Reveal, RevealLines } from "./Reveal";
 
 type Fields = { name: string; email: string; message: string };
@@ -11,24 +13,24 @@ type Errors = Partial<Record<keyof Fields, string>>;
 
 const EMPTY: Fields = { name: "", email: "", message: "" };
 
-function validate(values: Fields): Errors {
+function validate(values: Fields, t: Dictionary["contact"]): Errors {
   const errors: Errors = {};
   if (values.name.trim().length < 2)
-    errors.name = "Enter your name (at least 2 characters).";
+    errors.name = t.errName;
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(values.email.trim()))
-    errors.email = "Enter an email address like name@example.com.";
+    errors.email = t.errEmail;
   if (values.message.trim().length < 10)
-    errors.message =
-      "Write a few words about your project (at least 10 characters).";
+    errors.message = t.errMessage;
   return errors;
 }
 
 const fieldClass =
   "mt-2 w-full rounded-xl border bg-ink/50 px-4 py-3.5 text-bone placeholder:text-ash/60 transition-colors duration-300 focus:border-turq focus:outline-none focus-visible:outline-none";
 
-type ContactProps = { email?: string; socials?: { label: string; href: string }[] };
+type ContactProps = { lang: Lang; email?: string; socials?: { label: string; href: string }[] };
 
-export function Contact({ email = site.email, socials = site.socials as unknown as { label: string; href: string }[] }: ContactProps = {}) {
+export function Contact({ lang, email = site.email, socials = site.socials as unknown as { label: string; href: string }[] }: ContactProps) {
+  const t = ui[lang].contact;
   const uid = useId();
   const [values, setValues] = useState<Fields>(EMPTY);
   const [errors, setErrors] = useState<Errors>({});
@@ -39,13 +41,13 @@ export function Contact({ email = site.email, socials = site.socials as unknown 
     const next = { ...values, [key]: value };
     setValues(next);
     setSent(false);
-    if (touched) setErrors(validate(next));
+    if (touched) setErrors(validate(next, t));
   };
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setTouched(true);
-    const found = validate(values);
+    const found = validate(values, t);
     setErrors(found);
     const first = (Object.keys(found) as (keyof Fields)[])[0];
     if (first) {
@@ -53,7 +55,7 @@ export function Contact({ email = site.email, socials = site.socials as unknown 
       return;
     }
     // The site is static, so the message is handed to the visitor's mail app.
-    const subject = `Project inquiry from ${values.name.trim()}`;
+    const subject = t.subject(values.name.trim());
     const body = `${values.message.trim()}\n\n${values.name.trim()}\n${values.email.trim()}`;
     window.location.href = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     setSent(true);
@@ -98,17 +100,16 @@ export function Contact({ email = site.email, socials = site.socials as unknown 
             id="contact-title"
             className="font-display text-[clamp(2.1rem,5vw,3.9rem)] font-semibold leading-[1.05] tracking-[-0.03em]"
           >
-            <RevealLines lines={["Let's build"]} />
+            <RevealLines lines={[t.heading[0]]} />
             <RevealLines
-              lines={["something."]}
+              lines={[t.heading[1]]}
               delay={0.09}
               className="text-glow"
             />
           </h2>
           <Reveal delay={0.15}>
             <p className="mt-6 max-w-md text-lg text-ash">
-              Tell me what you need: a website, a Telegram bot, or a fix for the
-              one you already have. I reply within a day.
+              {t.lead}
             </p>
             <a
               href={`mailto:${email}`}
@@ -133,7 +134,7 @@ export function Contact({ email = site.email, socials = site.socials as unknown 
                       aria-hidden="true"
                       className="text-ash transition-[transform,color] duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-turq"
                     />
-                    <span className="sr-only">(opens in a new tab)</span>
+                    <span className="sr-only">{t.newTab}</span>
                   </a>
                 </li>
               ))}
@@ -148,12 +149,12 @@ export function Contact({ email = site.email, socials = site.socials as unknown 
             className="glass space-y-5 rounded-[2rem] p-6 sm:p-9"
           >
             <div className="grid gap-5 sm:grid-cols-2">
-              {field("name", "Your name", {
+              {field("name", t.name, {
                 type: "text",
                 autoComplete: "name",
                 placeholder: "Toxtamuratov Bekzod",
               })}
-              {field("email", "Email", {
+              {field("email", t.email, {
                 type: "email",
                 autoComplete: "email",
                 placeholder: "name@example.com",
@@ -165,7 +166,7 @@ export function Contact({ email = site.email, socials = site.socials as unknown 
                 htmlFor={`${uid}-message`}
                 className="text-[0.95rem] text-bone/80"
               >
-                Message
+                {t.message}
               </label>
               <textarea
                 id={`${uid}-message`}
@@ -173,7 +174,7 @@ export function Contact({ email = site.email, socials = site.socials as unknown 
                 rows={5}
                 value={values.message}
                 onChange={(e) => update("message", e.target.value)}
-                placeholder="What are you building, and when do you need it?"
+                placeholder={t.messagePlaceholder}
                 aria-invalid={errors.message ? true : undefined}
                 aria-describedby={
                   errors.message ? `${uid}-message-error` : undefined
@@ -194,7 +195,7 @@ export function Contact({ email = site.email, socials = site.socials as unknown 
               type="submit"
               className="group inline-flex h-12 w-full items-center justify-center gap-2.5 rounded-xl bg-turq px-7 font-medium text-ink shadow-[0_0_30px_-6px_rgb(53_224_210/0.8)] transition-[filter,transform] duration-300 hover:brightness-110 active:scale-[0.99] sm:w-auto"
             >
-              Write email
+              {t.submit}
               <Send
                 size={17}
                 aria-hidden="true"
@@ -211,8 +212,7 @@ export function Contact({ email = site.email, socials = site.socials as unknown 
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0 }}
                   >
-                    Your mail app opened with the email written. Press send
-                    there to deliver it.
+                    {t.sent}
                   </motion.p>
                 ) : null}
               </AnimatePresence>

@@ -7,7 +7,7 @@ export const site = {
   name: "Bekzod Toxtamuratov",
   firstName: "Bekzod",
   lastName: "Toxtamuratov",
-  role: "Creative Developer & Digital Designer.",
+  role: "Full-Stack Developer: Frontend & Backend.",
   url: "https://bekzodjs.uz",
   location: "Tashkent, Uzbekistan",
   intro:
@@ -28,6 +28,15 @@ export const site = {
     { label: "LinkedIn", href: "https://www.linkedin.com/in/developerbekzod/" },
     { label: "Telegram", href: "https://t.me/prog_r_ammer" },
   ],
+  /**
+   * Search-engine ownership codes. Paste only the code from the meta tag that
+   * Google Search Console / Yandex Webmaster give you (the content="..." part).
+   * Leave empty if you verified another way (DNS or HTML file).
+   */
+  verification: {
+    google: "",
+    yandex: "",
+  },
 } as const;
 
 export const nav = [

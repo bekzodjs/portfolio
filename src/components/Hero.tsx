@@ -4,19 +4,21 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowDown, Download, Mail, UserRound } from "lucide-react";
 import Image from "next/image";
 import { useRef } from "react";
+import type { Lang } from "@/i18n/config";
+import { ui } from "@/i18n/ui";
 import type { Profile } from "@/lib/content";
 import { RevealLines } from "./Reveal";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
 
-function Portrait({ photo, name }: { photo: string; name: string }) {
+function Portrait({ photo, alt, placeholder }: { photo: string; alt: string; placeholder: string }) {
   return (
     <div className="glass relative aspect-[4/5] w-full overflow-hidden rounded-[2rem]">
       {photo ? (
         <Image
           src={photo}
-          alt={`Portrait of ${name}`}
+          alt={alt}
           fill
           priority
           sizes="(min-width: 1024px) 26rem, 80vw"
@@ -27,7 +29,7 @@ function Portrait({ photo, name }: { photo: string; name: string }) {
           <span className="flex h-28 w-28 items-center justify-center rounded-full border border-line bg-turq/10">
             <UserRound size={56} strokeWidth={1.2} aria-hidden="true" />
           </span>
-          <span className="text-[0.95rem]">Add your photo</span>
+          <span className="text-[0.95rem]">{placeholder}</span>
         </div>
       )}
       <div
@@ -38,7 +40,8 @@ function Portrait({ photo, name }: { photo: string; name: string }) {
   );
 }
 
-export function Hero({ profile }: { profile: Profile }) {
+export function Hero({ lang, profile }: { lang: Lang; profile: Profile }) {
+  const t = ui[lang].hero;
   const name = `${profile.firstName} ${profile.lastName}`;
   const ref = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
@@ -63,7 +66,7 @@ export function Hero({ profile }: { profile: Profile }) {
         >
           <h1 className="font-display font-semibold leading-[1.02] tracking-[-0.03em]">
             <span className="block text-[clamp(1.1rem,2.2vw,1.5rem)] font-light tracking-[-0.01em] text-ash">
-              Hi, I&apos;m
+              {t.hello}
             </span>
             <RevealLines
               lines={[profile.firstName]}
@@ -94,7 +97,7 @@ export function Hero({ profile }: { profile: Profile }) {
                 href="#work"
                 className="group inline-flex h-12 items-center gap-2.5 rounded-xl bg-turq px-6 font-medium text-ink shadow-[0_0_30px_-6px_rgb(53_224_210/0.8)] transition-[filter,transform,box-shadow] duration-300 hover:shadow-[0_0_44px_-4px_rgb(53_224_210/0.95)] hover:brightness-110 active:scale-[0.98]"
               >
-                View My Work
+                {t.work}
                 <ArrowDown
                   size={18}
                   aria-hidden="true"
@@ -106,7 +109,7 @@ export function Hero({ profile }: { profile: Profile }) {
                 className="inline-flex h-12 items-center gap-2.5 rounded-xl border border-turq/45 px-6 font-medium text-ice transition-[background-color,transform,box-shadow] duration-300 hover:bg-turq/12 hover:shadow-[0_0_26px_-6px_rgb(53_224_210/0.7)] active:scale-[0.98]"
               >
                 <Mail size={18} aria-hidden="true" />
-                Contact Me
+                {t.contact}
               </a>
               {profile.cv ? (
                 <a
@@ -115,7 +118,7 @@ export function Hero({ profile }: { profile: Profile }) {
                   className="inline-flex h-12 items-center gap-2.5 rounded-xl border border-turq/45 px-6 font-medium text-ice transition-[background-color,transform,box-shadow] duration-300 hover:bg-turq/12 hover:shadow-[0_0_26px_-6px_rgb(53_224_210/0.7)] active:scale-[0.98]"
                 >
                   <Download size={18} aria-hidden="true" />
-                  Download CV
+                  {t.cv}
                   <span className="sr-only"> (PDF)</span>
                 </a>
               ) : null}
@@ -134,7 +137,7 @@ export function Hero({ profile }: { profile: Profile }) {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1.2, delay: 0.2, ease: EASE }}
           >
-            <Portrait photo={profile.photo} name={name} />
+            <Portrait photo={profile.photo} alt={t.portraitAlt(name)} placeholder={t.addPhoto} />
           </motion.div>
 
           <motion.div
@@ -149,7 +152,7 @@ export function Hero({ profile }: { profile: Profile }) {
               <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-turq" />
             </span>
             <span className="text-[0.92rem] leading-tight">
-              Available for projects
+              {t.available}
               <span className="block text-ash">{profile.location}</span>
             </span>
           </motion.div>
