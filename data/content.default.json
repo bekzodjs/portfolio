@@ -35,11 +35,11 @@
       "status": "In production at ELMA",
       "duration": "",
       "images": [
-        "/projects/ombor/1.png",
-        "/projects/ombor/2.png",
-        "/projects/ombor/3.png",
-        "/projects/ombor/4.png",
-        "/projects/ombor/5.png"
+        "/projects/ombor/1.webp",
+        "/projects/ombor/2.webp",
+        "/projects/ombor/3.webp",
+        "/projects/ombor/4.webp",
+        "/projects/ombor/5.webp"
       ]
     },
     {
@@ -79,7 +79,7 @@
       "status": "In production, 40+ daily users",
       "duration": "",
       "images": [
-        "/projects/davomat/1.png"
+        "/projects/davomat/1.webp"
       ]
     },
     {
@@ -122,15 +122,15 @@
       "status": "",
       "duration": "",
       "images": [
-        "/projects/avtopark/1.jpg",
-        "/projects/avtopark/2.jpg",
-        "/projects/avtopark/3.jpg",
-        "/projects/avtopark/4.jpg",
-        "/projects/avtopark/5.jpg",
-        "/projects/avtopark/6.jpg",
-        "/projects/avtopark/7.jpg",
-        "/projects/avtopark/8.jpg",
-        "/projects/avtopark/9.jpg"
+        "/projects/avtopark/1.webp",
+        "/projects/avtopark/2.webp",
+        "/projects/avtopark/3.webp",
+        "/projects/avtopark/4.webp",
+        "/projects/avtopark/5.webp",
+        "/projects/avtopark/6.webp",
+        "/projects/avtopark/7.webp",
+        "/projects/avtopark/8.webp",
+        "/projects/avtopark/9.webp"
       ]
     },
     {
@@ -167,11 +167,11 @@
       "status": "",
       "duration": "",
       "images": [
-        "/projects/edu-crm/1.jpg",
-        "/projects/edu-crm/2.jpg",
-        "/projects/edu-crm/3.jpg",
-        "/projects/edu-crm/4.jpg",
-        "/projects/edu-crm/5.jpg"
+        "/projects/edu-crm/1.webp",
+        "/projects/edu-crm/2.webp",
+        "/projects/edu-crm/3.webp",
+        "/projects/edu-crm/4.webp",
+        "/projects/edu-crm/5.webp"
       ]
     },
     {
@@ -210,19 +210,19 @@
       "status": "In production",
       "duration": "",
       "images": [
-        "/projects/aziastirka/1.jpg",
-        "/projects/aziastirka/2.jpg",
-        "/projects/aziastirka/3.jpg",
-        "/projects/aziastirka/4.jpg",
-        "/projects/aziastirka/5.jpg",
-        "/projects/aziastirka/6.jpg",
-        "/projects/aziastirka/7.jpg",
-        "/projects/aziastirka/8.jpg"
+        "/projects/aziastirka/1.webp",
+        "/projects/aziastirka/2.webp",
+        "/projects/aziastirka/3.webp",
+        "/projects/aziastirka/4.webp",
+        "/projects/aziastirka/5.webp",
+        "/projects/aziastirka/6.webp",
+        "/projects/aziastirka/7.webp",
+        "/projects/aziastirka/8.webp"
       ]
     }
   ],
   "settings": {
-    "email": "salom@bekzodjs.uz",
+    "email": "bekzodtoxtamuratov03@gmail.com",
     "socials": [
       {
         "label": "GitHub",

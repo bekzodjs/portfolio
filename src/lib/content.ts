@@ -1,7 +1,7 @@
 // Shared types + server-side JSON store for projects and settings.
 // Data lives in /data/content.json (runtime-writable). On first run it is
 // seeded from /data/content.default.json.
-import { promises as fs } from "node:fs";
+import { existsSync, promises as fs } from "node:fs";
 import path from "node:path";
 import { site, about, ielts, skillGroups, services } from "@/data/site";
 
@@ -105,9 +105,31 @@ export async function readContent(): Promise<Content> {
   return normalize(seed);
 }
 
+const PUBLIC_DIR = path.join(process.cwd(), "public");
+const webpFor = new Map<string, string>();
+
+/**
+ * The bundled screenshots in /public/projects were converted to WebP. Content
+ * saved before that still lists the old .png / .jpg paths, so a path whose file
+ * is gone is pointed at the .webp that replaced it.
+ */
+function currentImage(src: string): string {
+  if (!/^\/projects\/[\w./-]+\.(png|jpe?g)$/i.test(src) || src.includes("..")) return src;
+  const known = webpFor.get(src);
+  if (known) return known;
+  const webp = src.replace(/\.(png|jpe?g)$/i, ".webp");
+  const resolved =
+    !existsSync(path.join(PUBLIC_DIR, src)) && existsSync(path.join(PUBLIC_DIR, webp)) ? webp : src;
+  webpFor.set(src, resolved);
+  return resolved;
+}
+
 function normalize(c: Content): Content {
   return {
-    projects: (c.projects ?? []).map((p) => ({ ...EMPTY_PROJECT, ...p })),
+    projects: (c.projects ?? []).map((p) => {
+      const project = { ...EMPTY_PROJECT, ...p };
+      return { ...project, images: project.images.map(currentImage) };
+    }),
     settings: {
       email: c.settings?.email ?? "",
       socials: c.settings?.socials ?? [],

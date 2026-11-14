@@ -21,8 +21,8 @@ export const site = {
   photo: "/profile.webp",
   /** Résumé PDF in /public. Leave empty to hide the download buttons. */
   cv: "/Bekzod_Toxtamuratov_CV.pdf",
-  // PLACEHOLDER: create this mailbox in Plesk or put your own address here.
-  email: "salom@bekzodjs.uz",
+  // Contact address shown on the site and used by the contact form.
+  email: "bekzodtoxtamuratov03@gmail.com",
   socials: [
     { label: "GitHub", href: "https://github.com/bekzodjs" },
     { label: "LinkedIn", href: "https://www.linkedin.com/in/developerbekzod/" },

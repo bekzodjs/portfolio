@@ -36,7 +36,7 @@ export function homeMetadata(lang: Lang): Metadata {
     description: t.description,
     keywords: t.keywords,
     alternates: alternates(lang, homePath),
-    ...social(lang, homePath(lang), t.title, t.description, "/og.png", site.name),
+    ...social(lang, homePath(lang), t.title, t.description, "/og.jpg", site.name),
   };
 }
 
@@ -45,7 +45,7 @@ export function projectMetadata(lang: Lang, project: Project): Metadata {
   const t = ui[lang];
   const title = t.meta.projectTitle(project.title, project.tagline);
   const pathFor = (l: Lang) => projectPath(l, project.slug);
-  const image = project.images[0] ?? "/og.png";
+  const image = project.images[0] ?? "/og.jpg";
   return {
     title,
     description: project.summary,

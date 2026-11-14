@@ -31,7 +31,7 @@ Upload the **contents** of `out/` into the `bekzodjs.uz` folder in the Plesk fil
 src/app/         layout (SEO metadata, fonts), page, global styles, icon
 src/components/  Nav, Backdrop, Hero, About, Skills, Projects, Services, Process, Experience, Contact, Footer
 src/data/site.ts all content
-public/          profile.webp (your photo), og.png (share image), robots.txt, sitemap.xml
+public/          profile.webp (your photo), og.jpg (share image), robots.txt, sitemap.xml
 ```
 
 The contact form validates input and then opens the visitor's mail app with the message written.
