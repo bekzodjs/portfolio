@@ -59,7 +59,7 @@ export const ielts = {
 
 export const about = {
   paragraphs: [
-    "I'm a frontend developer from Tashkent. Most of my days go into JavaScript: company websites, landing pages, and Telegram bots that take orders and payments without sending people to another app.",
+    "I'm a full-stack developer from Tashkent. I build the whole product in JavaScript and TypeScript: React and Next.js interfaces, NestJS and PostgreSQL backends, and Telegram bots that take orders and payments without sending people to another app.",
     "I care about the parts visitors feel before they notice them: pages that open at once, layouts that hold up on a small phone, forms that tell you what went wrong.",
     "Alongside client work I'm finishing a master's degree in computer engineering, so the questions I ask about a product tend to go one layer deeper than the screen.",
   ],
@@ -84,7 +84,7 @@ export const skillGroups: { title: string; skills: Skill[] }[] = [
     ],
   },
   {
-    title: "Frameworks",
+    title: "Frontend",
     skills: [
       { name: "React", glyph: "Re", note: "Component-driven interfaces" },
       { name: "Next.js", glyph: "Nx", note: "Fast, SEO-friendly sites" },
@@ -92,9 +92,17 @@ export const skillGroups: { title: string; skills: Skill[] }[] = [
     ],
   },
   {
-    title: "Tooling",
+    title: "Backend",
     skills: [
       { name: "Node.js", glyph: "No", note: "APIs and Telegram bots" },
+      { name: "NestJS", glyph: "Ns", note: "REST APIs and microservices" },
+      { name: "PostgreSQL", glyph: "Pg", note: "Schemas, queries, Prisma and TypeORM" },
+    ],
+  },
+  {
+    title: "Tooling",
+    skills: [
+      { name: "Docker", glyph: "Dk", note: "Containers and deployment" },
       { name: "Git & GitHub", glyph: "Gt", note: "Clean history, team workflow" },
     ],
   },
@@ -269,7 +277,7 @@ export const timeline: TimelineItem[] = [
       "Deepening systems and software engineering alongside research on semantic segmentation of satellite and drone imagery.",
   },
   {
-    period: "Jun 2026 — Nov 2026",
+    period: "Jun 2026 — Present",
     title: "Backend Developer",
     place: "Elma",
     kind: "Work",

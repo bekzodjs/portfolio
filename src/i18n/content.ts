@@ -37,6 +37,11 @@ const T: Record<string, { uz: string; ru: string }> = {
       uz: "Men Toshkentlik frontend dasturchiman. Kunlarimning ko'p qismi JavaScript bilan o'tadi: kompaniya saytlari, lending sahifalar hamda buyurtma va to'lovlarni boshqa ilovaga o'tkazmasdan qabul qiladigan Telegram botlar.",
       ru: "Я фронтенд-разработчик из Ташкента. Большую часть времени пишу на JavaScript: сайты компаний, лендинги и Telegram-боты, которые принимают заказы и оплату, не отправляя человека в другое приложение.",
     },
+  "I'm a full-stack developer from Tashkent. I build the whole product in JavaScript and TypeScript: React and Next.js interfaces, NestJS and PostgreSQL backends, and Telegram bots that take orders and payments without sending people to another app.":
+    {
+      uz: "Men Toshkentlik full-stack dasturchiman. Mahsulotni JavaScript va TypeScript'da boshidan oxirigacha yarataman: React va Next.js'dagi interfeyslar, NestJS va PostgreSQL'dagi backend hamda buyurtma va to'lovlarni boshqa ilovaga o'tkazmasdan qabul qiladigan Telegram botlar.",
+      ru: "Я full-stack разработчик из Ташкента. Делаю продукт целиком на JavaScript и TypeScript: интерфейсы на React и Next.js, бэкенд на NestJS и PostgreSQL и Telegram-боты, которые принимают заказы и оплату, не отправляя человека в другое приложение.",
+    },
   "I care about the parts visitors feel before they notice them: pages that open at once, layouts that hold up on a small phone, forms that tell you what went wrong.":
     {
       uz: "Men uchun foydalanuvchi payqamasdan his qiladigan jihatlar muhim: darhol ochiladigan sahifalar, kichik telefonda ham buzilmaydigan dizayn, xatoni tushunarli aytadigan formalar.",
@@ -93,6 +98,12 @@ const T: Record<string, { uz: string; ru: string }> = {
   },
   "Fast, SEO-friendly sites": { uz: "Tez va SEO'ga mos saytlar", ru: "Быстрые сайты, дружелюбные к SEO" },
   "Design systems in code": { uz: "Koddagi dizayn tizimlari", ru: "Дизайн-системы в коде" },
+  "REST APIs and microservices": { uz: "REST API va mikroservislar", ru: "REST API и микросервисы" },
+  "Schemas, queries, Prisma and TypeORM": {
+    uz: "Sxemalar, so'rovlar, Prisma va TypeORM",
+    ru: "Схемы, запросы, Prisma и TypeORM",
+  },
+  "Containers and deployment": { uz: "Konteynerlar va deploy", ru: "Контейнеры и деплой" },
   "APIs and Telegram bots": { uz: "API va Telegram botlar", ru: "API и Telegram-боты" },
   "Clean history, team workflow": {
     uz: "Toza tarix, jamoaviy ish tartibi",
@@ -161,8 +172,14 @@ const T: Record<string, { uz: string; ru: string }> = {
       uz: "Tizim va dasturiy injiniringni chuqurlashtirish bilan birga sun'iy yo'ldosh va dron tasvirlarini semantik segmentatsiya qilish bo'yicha tadqiqot.",
       ru: "Углублённое изучение системной и программной инженерии и исследование семантической сегментации спутниковых снимков и снимков с дронов.",
     },
+  "Jun 2026 — Present": { uz: "2026-yil iyun — hozirgacha", ru: "Июнь 2026 — по настоящее время" },
   "Jun 2026 — Nov 2026": { uz: "2026-yil iyun — 2026-yil noyabr", ru: "Июнь 2026 — ноябрь 2026" },
   "Backend Developer": { uz: "Backend dasturchi", ru: "Бэкенд-разработчик" },
+  "I build microservices in NestJS for external integrations, including FHIR-based healthcare data exchange, with event-driven workflows on RabbitMQ and BullMQ, Redis caching, and monitoring in Grafana and Loki.":
+    {
+      uz: "Tashqi integratsiyalar uchun NestJS'da mikroservislar yarataman, jumladan FHIR asosidagi tibbiy ma'lumotlar almashinuvi; RabbitMQ va BullMQ'da hodisalarga asoslangan jarayonlar, Redis keshi hamda Grafana va Loki'da monitoring.",
+      ru: "Разрабатываю микросервисы на NestJS для внешних интеграций, включая обмен медицинскими данными по стандарту FHIR: событийные процессы на RabbitMQ и BullMQ, кеширование в Redis, мониторинг в Grafana и Loki.",
+    },
   "Built microservices in NestJS for external integrations, including FHIR-based healthcare data exchange, with event-driven workflows on RabbitMQ and BullMQ, Redis caching, and monitoring in Grafana and Loki.":
     {
       uz: "Tashqi integratsiyalar uchun NestJS'da mikroservislar yaratdim, jumladan FHIR asosidagi tibbiy ma'lumotlar almashinuvi; RabbitMQ va BullMQ'da hodisalarga asoslangan jarayonlar, Redis keshi hamda Grafana va Loki'da monitoring.",
