@@ -59,7 +59,7 @@ export function Hero({ lang, profile }: { lang: Lang; profile: Profile }) {
     >
       <div className="mx-auto grid w-full max-w-6xl items-center gap-10 px-5 md:px-8 lg:grid-cols-12 lg:gap-8">
         <motion.div
-          className="glass rounded-[2rem] p-7 sm:p-10 lg:col-span-7"
+          className="glass min-w-0 rounded-[2rem] p-6 sm:p-10 lg:col-span-7"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: EASE }}
@@ -72,13 +72,13 @@ export function Hero({ lang, profile }: { lang: Lang; profile: Profile }) {
               lines={[profile.firstName]}
               onView={false}
               delay={0.25}
-              className="mt-2 block text-[clamp(2.6rem,7.4vw,5.5rem)]"
+              className="mt-2 block break-words text-[clamp(2.1rem,12vw,2.6rem)] sm:text-[clamp(2.6rem,7.4vw,5.5rem)]"
             />
             <RevealLines
               lines={[`${profile.lastName}.`]}
               onView={false}
               delay={0.34}
-              className="text-glow block text-[clamp(1.7rem,4.3vw,3.1rem)]"
+              className="text-glow block break-words text-[clamp(1.1rem,6.5vw,1.7rem)] sm:text-[clamp(1.7rem,4.3vw,3.1rem)]"
             />
           </h1>
 

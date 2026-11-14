@@ -16,7 +16,7 @@ export function Ielts({ lang, profile }: { lang: Lang; profile: Profile }) {
               className="pointer-events-none absolute -right-24 -top-24 size-72 rounded-full bg-[radial-gradient(closest-side,rgb(53_224_210/0.3),transparent)] blur-2xl"
               aria-hidden="true"
             />
-            <div className="relative grid items-center gap-8 md:grid-cols-[auto_1fr_auto] md:gap-10">
+            <div className="relative grid items-center gap-8 md:grid-cols-[auto_1fr] md:gap-x-10 lg:grid-cols-[auto_1fr_auto]">
               <div className="flex items-center gap-5">
                 <div className="grid size-28 shrink-0 place-items-center rounded-3xl border border-turq/50 bg-turq/10 shadow-[0_0_40px_-8px_rgb(53_224_210/0.8)] sm:size-32">
                   <span className="text-center">
@@ -30,7 +30,7 @@ export function Ielts({ lang, profile }: { lang: Lang; profile: Profile }) {
                 </div>
               </div>
 
-              <div>
+              <div className="min-w-0">
                 <p className="inline-flex items-center gap-2 text-[0.8rem] uppercase tracking-[0.14em] text-turq">
                   <Languages size={15} aria-hidden="true" />
                   {t.certified}
@@ -51,7 +51,7 @@ export function Ielts({ lang, profile }: { lang: Lang; profile: Profile }) {
                 <a
                   href={ielts.certificate}
                   download
-                  className="inline-flex h-12 items-center justify-center gap-2.5 rounded-xl bg-turq px-6 font-medium text-ink shadow-[0_0_30px_-6px_rgb(53_224_210/0.8)] transition-[filter,transform] duration-300 hover:brightness-110 active:scale-[0.98]"
+                  className="inline-flex min-h-12 items-center justify-center gap-2.5 rounded-xl bg-turq px-5 py-2 text-center min-[360px]:whitespace-nowrap sm:px-6 md:col-span-2 md:justify-self-start lg:col-span-1 lg:justify-self-auto font-medium text-ink shadow-[0_0_30px_-6px_rgb(53_224_210/0.8)] transition-[filter,transform] duration-300 hover:brightness-110 active:scale-[0.98]"
                 >
                   <Download size={18} aria-hidden="true" />
                   {t.download}

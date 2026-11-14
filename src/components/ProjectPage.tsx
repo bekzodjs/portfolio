@@ -67,7 +67,7 @@ export async function ProjectPage({ lang, slug }: { lang: Lang; slug: string }) 
 
           <header id="top" className="mt-8">
             <p className="text-[0.8rem] uppercase tracking-[0.14em] text-turq">{project.tagline}</p>
-            <h1 className="mt-3 font-display text-[clamp(2rem,5vw,3.4rem)] font-semibold leading-[1.05] tracking-[-0.03em]">
+            <h1 className="mt-3 break-words font-display text-[clamp(1.6rem,9vw,2rem)] sm:text-[clamp(2rem,5vw,3.4rem)] font-semibold leading-[1.05] tracking-[-0.03em]">
               {project.title}
             </h1>
             <p className="mt-5 max-w-[62ch] text-lg text-ash">{project.summary}</p>

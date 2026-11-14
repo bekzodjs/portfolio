@@ -22,7 +22,7 @@ export function Services({ lang, profile }: { lang: Lang; profile: Profile }) {
           title={t.title}
           lead={t.lead}
         />
-        <ul className="grid gap-5 md:grid-cols-3 lg:gap-6">
+        <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
           {services.map((service, i) => {
             const Icon = ICONS[service.icon];
             return (
@@ -30,9 +30,9 @@ export function Services({ lang, profile }: { lang: Lang; profile: Profile }) {
                 as="li"
                 key={service.title}
                 delay={i * 0.1}
-                className="h-full"
+                className="h-full sm:last:col-span-2 lg:last:col-span-1"
               >
-                <div className="glass glass-hover group h-full rounded-[1.75rem] p-7">
+                <div className="glass glass-hover group h-full rounded-[1.75rem] p-6 sm:p-7">
                   <span className="flex h-14 w-14 items-center justify-center rounded-2xl border border-turq/35 bg-turq/10 text-turq shadow-[inset_0_0_18px_rgb(53_224_210/0.25)] transition-shadow duration-500 group-hover:shadow-[0_0_26px_-2px_rgb(53_224_210/0.7)]">
                     <Icon size={26} strokeWidth={1.6} aria-hidden="true" />
                   </span>

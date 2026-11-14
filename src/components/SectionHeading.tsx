@@ -13,7 +13,7 @@ export function SectionHeading({
     <header className="mx-auto mb-10 max-w-2xl text-center md:mb-14">
       <h2
         id={id}
-        className="font-display text-[clamp(1.7rem,3.6vw,2.75rem)] font-semibold leading-[1.1] tracking-[-0.02em]"
+        className="break-words font-display text-[clamp(1.45rem,7.4vw,1.7rem)] font-semibold sm:text-[clamp(1.7rem,3.6vw,2.75rem)] leading-[1.1] tracking-[-0.02em]"
       >
         <RevealLines lines={[title]} />
       </h2>

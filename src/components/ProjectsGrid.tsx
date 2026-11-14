@@ -219,7 +219,7 @@ export function Gallery({ lang, project }: { lang: Lang; project: ProjectWithIma
               type="button"
               onClick={() => step(-1)}
               aria-label={t.prev}
-              className="absolute left-3 top-1/2 grid size-11 -translate-y-1/2 cursor-pointer place-items-center rounded-full border border-line bg-ink/75 text-ice backdrop-blur transition-colors hover:bg-turq/20"
+              className="absolute left-2 top-1/2 grid size-9 -translate-y-1/2 sm:left-3 sm:size-11 cursor-pointer place-items-center rounded-full border border-line bg-ink/75 text-ice backdrop-blur transition-colors hover:bg-turq/20"
             >
               <ChevronLeft size={20} aria-hidden="true" />
             </button>
@@ -227,7 +227,7 @@ export function Gallery({ lang, project }: { lang: Lang; project: ProjectWithIma
               type="button"
               onClick={() => step(1)}
               aria-label={t.next}
-              className="absolute right-3 top-1/2 grid size-11 -translate-y-1/2 cursor-pointer place-items-center rounded-full border border-line bg-ink/75 text-ice backdrop-blur transition-colors hover:bg-turq/20"
+              className="absolute right-2 top-1/2 grid size-9 -translate-y-1/2 sm:right-3 sm:size-11 cursor-pointer place-items-center rounded-full border border-line bg-ink/75 text-ice backdrop-blur transition-colors hover:bg-turq/20"
             >
               <ChevronRight size={20} aria-hidden="true" />
             </button>

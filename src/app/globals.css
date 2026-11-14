@@ -38,6 +38,24 @@ body {
   overflow-x: clip;
 }
 
+/* Long words (Russian, Uzbek) wrap instead of pushing the page wider than the screen. */
+h1,
+h2,
+h3,
+h4,
+p,
+li,
+dt,
+dd {
+  overflow-wrap: break-word;
+}
+
+img,
+svg,
+video {
+  max-width: 100%;
+}
+
 ::selection {
   background: var(--color-turq);
   color: var(--color-ink);

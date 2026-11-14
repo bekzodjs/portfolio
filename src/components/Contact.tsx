@@ -95,10 +95,10 @@ export function Contact({ lang, email = site.email, socials = site.socials as un
       className="relative py-20 md:py-28"
     >
       <div className="mx-auto grid max-w-6xl items-center gap-12 px-5 md:px-8 lg:grid-cols-12 lg:gap-14">
-        <div className="lg:col-span-6">
+        <div className="min-w-0 lg:col-span-6">
           <h2
             id="contact-title"
-            className="font-display text-[clamp(2.1rem,5vw,3.9rem)] font-semibold leading-[1.05] tracking-[-0.03em]"
+            className="break-words font-display text-[clamp(1.7rem,9vw,2.1rem)] font-semibold sm:text-[clamp(2.1rem,5vw,3.9rem)] leading-[1.05] tracking-[-0.03em]"
           >
             <RevealLines lines={[t.heading[0]]} />
             <RevealLines
@@ -113,7 +113,7 @@ export function Contact({ lang, email = site.email, socials = site.socials as un
             </p>
             <a
               href={`mailto:${email}`}
-              className="mt-8 inline-flex h-12 items-center gap-2.5 rounded-xl border border-turq/45 px-6 font-medium text-ice transition-[background-color,box-shadow,transform] duration-300 hover:bg-turq/12 hover:shadow-[0_0_26px_-6px_rgb(53_224_210/0.7)] active:scale-[0.98]"
+              className="mt-8 inline-flex min-h-12 max-w-full items-center gap-2.5 break-all rounded-xl border border-turq/45 px-5 py-2 sm:px-6 font-medium text-ice transition-[background-color,box-shadow,transform] duration-300 hover:bg-turq/12 hover:shadow-[0_0_26px_-6px_rgb(53_224_210/0.7)] active:scale-[0.98]"
             >
               <Mail size={18} aria-hidden="true" />
               {email}

@@ -35,7 +35,7 @@ export function Timeline({
       <div className="mx-auto max-w-6xl px-5 md:px-8">
         <SectionHeading id={`${id}-title`} title={title} lead={lead} />
 
-        <div className="glass rounded-[2rem] p-6 sm:p-10">
+        <div className="glass rounded-[2rem] p-5 sm:p-10">
           <ol ref={ref} className="relative ml-1 md:ml-0">
             <span
               className="absolute bottom-2 left-[9px] top-2 w-px bg-line md:left-[calc(25%+9px)]"
@@ -64,13 +64,13 @@ export function Timeline({
                   >
                     <span className="absolute inset-[5px] rounded-full bg-turq" />
                   </span>
-                  <div className="md:col-span-3 md:pl-14">
-                    <h3 className="font-display text-xl font-medium tracking-[-0.01em] md:text-2xl">
+                  <div className="min-w-0 md:col-span-3 md:pl-14">
+                    <h3 className="hyphens-auto break-words font-display text-lg font-medium tracking-[-0.01em] sm:text-xl md:text-2xl">
                       {item.title}
                     </h3>
-                    <p className="mt-1.5 flex items-center gap-2 text-bone/80">
-                      <Icon size={17} aria-hidden="true" className="shrink-0 text-turq" />
-                      <span>
+                    <p className="mt-1.5 flex items-start gap-2 text-bone/80">
+                      <Icon size={17} aria-hidden="true" className="mt-1 shrink-0 text-turq" />
+                      <span className="min-w-0 break-words">
                         <span className="sr-only">{kindLabel ?? item.kind}: </span>
                         {item.place}
                       </span>
